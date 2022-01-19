@@ -1,10 +1,13 @@
 import React from 'react'
 import { Switch } from '@headlessui/react'
+import { Link } from 'react-router-dom'
 
 function Navbar({ enabled, setEnabled }) {
     return (
         <nav className={`${enabled ? 'text-[#121315] bg-white' : 'text-white bg-[#2B3743]'} flex justify-between items-center py-8 drop-shadow-xl`}>
-            <h1 className='pl-4 font-extrabold text-xl'>Where in the World?</h1>
+            <Link to='/'>
+                <h1 className='pl-4 font-extrabold text-xl'>Where in the World?</h1>
+            </Link>
             <div className='flex items-center pr-4'>
                 <Switch
                 checked={enabled}

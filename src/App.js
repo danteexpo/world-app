@@ -1,8 +1,10 @@
-import './App.css'
-import { useState, useEffect } from 'react'
-import Navbar from './components/Navbar'
-import Main from './components/Main'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Filters from './components/Filters'
+import Results from './components/Results'
+import './App.css'
 
 const regions = [
   { name: 'Africa' },
@@ -37,8 +39,18 @@ function App() {
 
   return (
     <>
-    <Navbar enabled={enabled} setEnabled={setEnabled}/>
-    <Main apiResults={apiResults} regions={regions} input={input} setInput={setInput} selected={selected} setSelected={setSelected} handleInput={handleInput} enabled={enabled} />
+      <Navbar enabled={enabled} setEnabled={setEnabled}/>
+      <Routes>
+        <Route path='/' element={
+          <main>
+            <Filters regions={regions} input={input} setInput={setInput} selected={selected} setSelected={setSelected} handleInput={handleInput} enabled={enabled} />
+            <Results enabled={enabled} apiResults={apiResults}/>
+          </main>
+        }/>
+        <Route path='/name'>
+          <Route path=':numericCode'></Route>
+        </Route>
+      </Routes>
     </>
   );
 }
